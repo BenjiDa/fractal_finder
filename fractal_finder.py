@@ -4,6 +4,21 @@ from scipy import stats
 from scipy.optimize import curve_fit
 
 
+def pick_fit_section(xdata, ydata):
+    
+    ##Function that lets you pick portion of the curve to fit a function to, 
+    #returns x and y data over the user-selected range.
+    
+    print("Please click upper and lower limits: ")#interactively select log-linear portion of curve
+    x = plt.ginput(2, show_clicks=True)
+    print("clicked: ", x)
+    y_fit_range = np.append(int(x[0][1]), int(x[1][1]))
+
+    xdata = xdata[min(y_fit_range):max(y_fit_range)]#crop data to log-linear portion of curve
+    ydata = ydata[min(y_fit_range):max(y_fit_range)]
+    
+    return xdata, ydata
+
 
 def fit_fractal_slopes(xdata, ydata):
     
@@ -40,6 +55,8 @@ def fit_fractal_slopes(xdata, ydata):
 
 
 def fit_lognormal(xdata, ydata):
+
+	##Function to test if data fits a lognormal distribution.
 
 	def func(x, mu, sigma, N):
     	return (N*(np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2))/ (x * sigma * np.sqrt(2 * np.pi))))
