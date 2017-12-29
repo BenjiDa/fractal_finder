@@ -1,22 +1,7 @@
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
-
-path = "your/path/"
-file ="data.csv"
-
-
-data = pd.read_csv(path+file)
-df = pd.DataFrame(data)
-sort_area = df.sort_values('Area',ascending=False)#sort pandas datafram decending
-
-
-sort_area['int_index'] = range(len(df))
-
-#define x, y data
-xdata = sort_area['Area']
-ydata = sort_area['int_index']
+from scipy.optimize import curve_fit
 
 
 
@@ -39,13 +24,8 @@ def fit_fractal_slopes(xdata, ydata):
     plt.xlabel('Clast size (cm^2)')
     plt.gca().set_aspect('equal')#set equal aspect ratio for plot.
     
-    print("Please click upper and lower limits: ")#interactively select log-linear portion of curve
-    x = plt.ginput(2, show_clicks=True)
-    print("clicked: ", x)
-    y_fit_range = np.append(int(x[0][1]), int(x[1][1]))
-
-    xdata = xdata[min(y_fit_range):max(y_fit_range)]#crop data to log-linear portion of curve
-    ydata = ydata[min(y_fit_range):max(y_fit_range)]
+    xdata, ydata = pick_fit_section(xdata, ydata)
+    
     logx = np.log(xdata)#convert data for linear fitting
     logy = np.log(ydata)
     
@@ -57,3 +37,22 @@ def fit_fractal_slopes(xdata, ydata):
     plt.text(xtext,1,'d-value: %s, r-squared: %s' % (abs(round(slope,2)), round(r_value**2,3)), style='italic',size=12,ha='left',va='bottom')
 
     return slope, intercept, r_value
+
+
+def fit_lognormal(xdata, ydata):
+
+	def func(x, mu, sigma, N):
+    	return (N*(np.exp(-(np.log(x) - mu)**2 / (2 * sigma**2))/ (x * sigma * np.sqrt(2 * np.pi))))
+    
+    plt.loglog(xdata, ydata, 'k.', label='data')
+    
+    xdata, ydata = pick_fit_section(xdata,ydata)
+   
+    popt, pcov = curve_fit(func, xdata, ydata)
+
+    plt.loglog(xdata, ydata, 'bo', label='data')
+    plt.loglog(xdata, func(xdata, *popt),'r')#,label='fit: a=%5.3f, b=%5.3f' % tuple(popt))
+    
+    return popt, pcov
+
+
