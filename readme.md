@@ -1,3 +1,6 @@
+##Read me
+
+#plotting and manual selection of size or area data for fractal or lognormal datasets
 
 ```python
 %matplotlib qt
