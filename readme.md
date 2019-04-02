@@ -33,3 +33,4 @@ r_squared = ff.fit_lognormal(file_path, path, sample_name)
 ```
 
 <img width="593" alt="lgnrm" src="https://user-images.githubusercontent.com/18178879/55427169-458fe380-553b-11e9-933a-c5e0b6395581.png">
+
