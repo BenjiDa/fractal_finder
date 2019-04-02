@@ -75,7 +75,6 @@ def fit_fractal_slopes(file, path, sample_name):
     
     plt.loglog(xdata,powerlaw(xdata,np.exp(intercept),slope), 'r-')#plot best fit
     plt.text(xtext,1,'d-value: %s, r-squared: %s' % (abs(round(slope,2)), round(r_value**2,3)), style='italic',size=12,ha='left',va='bottom')
-    #plt.savefig('/Users/bmelosh/Dropbox/Serpentinite_flow/analyses/fractal/%s_fractal.pdf' % sample_name)
     
     return slope, intercept, r_value, xdata, ydata
 
@@ -119,9 +118,10 @@ def store_data_fractal(sample_name, slope, intercept, r_value, path):
     d["r_squared"] = r_value**2
     #d["xdata"] = xdata.values.tolist()
     
-    with open(path + '%s_bf_fractal.txt' % sample_name, 'w') as fp:
-        json.dump(d, fp)
 
+    with open(path + '%s_bf_fractal.txt' % sample_name, 'w+') as fp:
+        json.dump(d, fp)
+        
     
 def store_data_curve(sample_name, popt, r_squared, path):
     popt_list = popt.tolist()

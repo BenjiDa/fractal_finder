@@ -11,7 +11,7 @@ import fractal_finder as ff
 
 ### Add path and file name information
 ```python
-path = "/path/to/data"
+path = "/path/to/data/"
 file_path = "Sample_clasts.csv"
 sample_name ="Clasts1"
 ```
