@@ -1,6 +1,6 @@
-##Read me
+# Read me
 
-#plotting and manual selection of size or area data for fractal or lognormal datasets
+## Plotting and manual selection of size or area data for fractal or lognormal datasets. This interactive module is designed to work with jupyter notebook.
 
 ```python
 %matplotlib qt
