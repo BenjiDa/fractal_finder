@@ -1,9 +1,8 @@
-# Read me
-
 <p align="center">
-  <img width="584" alt="runner_w copy" src="https://user-images.githubusercontent.com/18178879/55427894-dd420180-553c-11e9-94e7-f6de83ab3e77.png">
+  <img width="584" alt="logo" src="https://user-images.githubusercontent.com/18178879/55429311-04e69900-5540-11e9-8775-9b5924d6f5bc.png">
 </p>
 
+# Read me
 
 ## Plotting and manual selection of size or area data for fractal or lognormal datasets. This interactive module is designed to work with jupyter notebook.
 
