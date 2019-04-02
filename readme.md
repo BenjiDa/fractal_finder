@@ -17,10 +17,11 @@ import fractal_finder as ff
 ```python
 path = "/path/to/data/" #Path to your data
 filename = "Sample_clasts.csv" #File in .csv format
-sample_name ="Clasts1" #Name of sample, used to save bestfits
+sample_name ="Clasts1" #Name of sample, used to save best fits
 ```
 
 ### Run fractal finder (interactive plot)
+#### This will plot sorted data and allow the user to manually select the fractal portion of the distribution. Best fit data will be saved.
 ```python
 slope, intercept, r_value, xdata, ydata = ff.fit_fractal_slopes(filename, path, sample_name)
 ```
